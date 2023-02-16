@@ -3,29 +3,30 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E5197)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
+# Upload Control for ASP.NET Web Forms - How to upload an image and display it on a web page
+
+This example demonstrates how to use the [Upload Control](https://docs.devexpress.com/AspNet/8298/components/file-management/file-upload) to upload an image to the server and then show it on a web page.
+
+![Upload and Display an Image](upload-image.png)
+
+## Overview
+
+Follow the steps below to display an image on a web page once a user uploads the image to the server:
+
+1. Create the *Images* folder in the root folder of your project. In the newly created folder, place an image that you want to initially display.
+
+2. Add the [HTML \<img\> tag](https://www.w3schools.com/tags/tag_img.asp) to a page. Use the tag's **id** attribute to specify the tag identifier. Assign the path to the image you want to initially display to the tag's **src** attribute. The **alt** attribute allows you to specify an alternate text for the image.
+
+3. Add the [ASPxUploadControl](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxUploadControl?p=netframework) to the page. Set the control's [ShowUploadButton](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxUploadControl.ShowUploadButton?p=netframework) property to `true` to allow users to upload files. Use the [ValidationSettings.AllowedFileExtensions](https://docs.devexpress.com/AspNet/DevExpress.Web.UploadControlValidationSettings.AllowedFileExtensions?p=netframework) property to prevent users from uploading files other than images.
+
+4. Handle the upload control's server-side [FileUploadComplete](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxUploadControl.FileUploadComplete?p=netframework) event. The [UploadedFile](https://docs.devexpress.com/AspNet/DevExpress.Web.FileUploadCompleteEventArgs.UploadedFile?p=netframework) event argument allows you to get the uploaded file as an [UploadedFile](https://docs.devexpress.com/AspNet/DevExpress.Web.UploadedFile) object. Call the object's [SaveAs](https://docs.devexpress.com/AspNet/DevExpress.Web.UploadedFile.SaveAs(System.String)) method to save the uploaded file to the "~/Images/" directory. Set the [CallbackData](https://docs.devexpress.com/AspNet/DevExpress.Web.FileUploadCompleteEventArgs.CallbackData) event argument to *Images/\<filename\>*, where \<filename\> is a full name of the file you saved.
+
+> **Note**  
+> Unlike the `CallbackData` property value, the path to the directory where you save files should include the application root directory ("~/").
+
+5. Handle the upload control's client-side [FileUploadComplete](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControl.FileUploadComplete?p=netframework) event. In the event handler, use the [getElementById](https://developer.mozilla.org/en-US/docs/web/api/document/getelementbyid) method to access the `<img>` tag by its identifier. Set the **src** attribute of the tag to the value of the[callbackData](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControlFileUploadCompleteEventArgs.callbackData) event argument.  received from the server.
+
+## Files to Review
 
 * [Default.aspx](./CS/WebSite/Default.aspx) (VB: [Default.aspx](./VB/WebSite/Default.aspx))
 * [Default.aspx.cs](./CS/WebSite/Default.aspx.cs) (VB: [Default.aspx.vb](./VB/WebSite/Default.aspx.vb))
-<!-- default file list end -->
-# How to use ASPxUploadControl to upload an image and display it on a web page
-
-
-<p>This example demonstrates how to use ASPxUploadControl to upload an image to the server and then show it on the page.<br />
-To do this, please follow these steps:<br />
-- Place <strong>ASPxUploadControl</strong> on the page<strong> </strong>and set the <strong>ASPxUploadControl.ShowUploadButton</strong> property to true.<br />
-- Set the <strong>ASPxUploadControl.ValidationSettings.AllowedFileExtensions </strong>property to <strong>".jpg,.jpeg,.jpe,.gif"</strong>.<br />
-- Place an <strong>html image</strong> (<img /> tag) on the page.<br />
-- Create the "Images" folder in the root folder of your project.<br />
-- Set the <strong>src </strong>property of the <strong>image </strong>to "Images/DefaultImage". You may place there any image. After the first file upload, the <strong>src</strong> property will be changed.<br />
-- Set the <strong>image</strong> <strong>alt </strong>property to "Please load image" (or another text that will inform a user that there is no image to be displayed).<br />
-- Handle both the client-side and server-side <strong>ASPxUploadControl.FileUploadComplete</strong> events.<br />
-- In the server-side event handler, save the uploaded file to the directory "~/Images/". To easily create a unique filename, we recommend using the current date and time (<strong>DateTime.Now()</strong>).<br />
-- Set the <strong>FileUploadCompleteEventArgs.CallbackData </strong>property to "Images/<filename>", where <filename> is a full name of the file you saved. Please note that you need to save the file to directory "~/Images/", where "~/" is the root folder of your project, but set the <strong>FileUploadCompleteEventArgs.CallbackData </strong>property to "Images/<filname>" <u>excluding</u> the root folder.<br />
-- In the client-side event handler, use the <strong>document.getElementById </strong>method to find your <strong>html image</strong> by the assigned <strong>id</strong>.<br />
-- Set the <strong>src </strong>property of the found image to <strong>ASPxClientUploadControlFileUploadCompleteEventHandler.callbackData</strong> received from server. </p>
-
-<br/>
-
-
