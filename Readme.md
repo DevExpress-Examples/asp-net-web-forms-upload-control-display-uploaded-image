@@ -21,8 +21,8 @@ Follow the steps below to display an image on a web page once a user uploads the
 
 4. Handle the upload control's server-side [FileUploadComplete](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxUploadControl.FileUploadComplete?p=netframework) event. The [UploadedFile](https://docs.devexpress.com/AspNet/DevExpress.Web.FileUploadCompleteEventArgs.UploadedFile?p=netframework) event argument allows you to get the uploaded file as an [UploadedFile](https://docs.devexpress.com/AspNet/DevExpress.Web.UploadedFile) object. Call the object's [SaveAs](https://docs.devexpress.com/AspNet/DevExpress.Web.UploadedFile.SaveAs(System.String)) method to save the uploaded file to the "~/Images/" directory. Set the [CallbackData](https://docs.devexpress.com/AspNet/DevExpress.Web.FileUploadCompleteEventArgs.CallbackData) event argument to *Images/\<filename\>*, where \<filename\> is a full name of the file you saved.
 
-> **Note**  
-> Unlike the `CallbackData` property value, the path to the directory where you save files should include the application root directory ("~/").
+    > **Note**  
+    > Unlike the `CallbackData` property value, the path to the directory where you save files should include the application root directory ("~/").
 
 5. Handle the upload control's client-side [FileUploadComplete](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControl.FileUploadComplete?p=netframework) event. In the event handler, use the [getElementById](https://developer.mozilla.org/en-US/docs/web/api/document/getelementbyid) method to access the `<img>` tag by its identifier. Set the **src** attribute of the tag to the value of the[callbackData](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControlFileUploadCompleteEventArgs.callbackData) event argument.  received from the server.
 
