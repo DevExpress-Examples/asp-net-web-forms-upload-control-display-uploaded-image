@@ -5,7 +5,7 @@
 <!-- default badges end -->
 # Upload Control for ASP.NET Web Forms - How to upload an image and display it on a web page
 
-This example demonstrates how to use the [Upload Control](https://docs.devexpress.com/AspNet/8298/components/file-management/file-upload) to upload an image to the server and then show it on a web page.
+This example demonstrates how to use the [Upload Control](https://docs.devexpress.com/AspNet/8298/components/file-management/file-upload) to upload an image to the server and display the uploaded image on a web page.
 
 ![Upload and Display an Image](upload-image.png)
 
@@ -15,7 +15,7 @@ Follow the steps below to display an image on a web page once a user uploads the
 
 1. Create the *Images* folder in the root folder of your project. In the newly created folder, place an image that you want to initially display.
 
-2. Add the [HTML \<img\> tag](https://www.w3schools.com/tags/tag_img.asp) to a page. Use the tag's **id** attribute to specify the tag identifier. Assign the path to the image you want to initially display to the tag's **src** attribute. The **alt** attribute allows you to specify an alternate text for the image.
+2. Add the [HTML \<img\> tag](https://www.w3schools.com/tags/tag_img.asp) to a page. Use the tag's **id** attribute to specify the tag identifier. Assign the path to the initially displayed image to the tag's **src** attribute. The **alt** attribute allows you to specify an alternate text for the image.
 
     ```aspx
     <img src="Images/DefaultImage.jpg" id="image" alt="Please load image" />
@@ -32,17 +32,22 @@ Follow the steps below to display an image on a web page once a user uploads the
     </dx:ASPxUploadControl>
     ```
 
-4. Handle the upload control's server-side [FileUploadComplete](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxUploadControl.FileUploadComplete?p=netframework) event. The [UploadedFile](https://docs.devexpress.com/AspNet/DevExpress.Web.FileUploadCompleteEventArgs.UploadedFile?p=netframework) event argument stores the uploaded image as an [UploadedFile](https://docs.devexpress.com/AspNet/DevExpress.Web.UploadedFile) object. To save the image, pass the full path to the *Images* folder to the object's [SaveAs](https://docs.devexpress.com/AspNet/DevExpress.Web.UploadedFile.SaveAs(System.String)) method. Assign the relative path to the uploaded image to the [CallbackData](https://docs.devexpress.com/AspNet/DevExpress.Web.FileUploadCompleteEventArgs.CallbackData) property to pass this path to the client.
+4. Handle the Upload Control's server-side [FileUploadComplete](https://docs.devexpress.com/AspNet/DevExpress.Web.ASPxUploadControl.FileUploadComplete?p=netframework) event. The [UploadedFile](https://docs.devexpress.com/AspNet/DevExpress.Web.FileUploadCompleteEventArgs.UploadedFile?p=netframework) event argument contains the uploaded image. Call the image's [SaveAs](https://docs.devexpress.com/AspNet/DevExpress.Web.UploadedFile.SaveAs(System.String)) method to save the image on the server. Set the [CallbackData](https://docs.devexpress.com/AspNet/DevExpress.Web.FileUploadCompleteEventArgs.CallbackData) property to the relative image path to pass it to the client.
 
     ```csharp
     protected void Upload_FileUploadComplete(object sender, FileUploadCompleteEventArgs e) {
+        // Assign a relative path to the 'CallbackData' property
+        // Relative path: "Images\Picture2023-02-17 10-19-58.jpg"
         e.CallbackData = String.Format("Images\\Picture{0}.jpg", DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss"));
+        
+        // Send a full path as the 'path' parameter to the 'SaveAs' method
+        // Full path: "C:\WebSite\Images\Picture2023-02-17 10-19-58.jpg"
         string path = Page.MapPath("~/") + e.CallbackData;
         e.UploadedFile.SaveAs(path);
     }
     ```
 
-5. Handle the upload control's client-side [FileUploadComplete](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControl.FileUploadComplete?p=netframework) event. In the event handler, use the [getElementById](https://developer.mozilla.org/en-US/docs/web/api/document/getelementbyid) method to access the `<img>` tag by its identifier. The [callbackData](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControlFileUploadCompleteEventArgs.callbackData) event argument contains the path that the server passed to the client. Assign this path to the **src** attribute of the image tag to display the uploaded image.
+5. Handle the Upload Control's client-side [FileUploadComplete](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControl.FileUploadComplete?p=netframework) event. In the event handler, call the [getElementById](https://developer.mozilla.org/en-US/docs/web/api/document/getelementbyid) method to access the `<img>` tag by its identifier. The [callbackData](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControlFileUploadCompleteEventArgs.callbackData) event argument contains the path the server passed to the client. Assign this path to the **src** attribute of the image tag to display the uploaded image.
 
     ```js
     function OnFileUploadComplete(s, e) {
