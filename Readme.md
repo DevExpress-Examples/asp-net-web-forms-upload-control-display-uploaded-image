@@ -13,7 +13,7 @@ This example demonstrates how to use the [Upload Control](https://docs.devexpres
 
 Follow the steps below to display an image on a web page once a user uploads the image to the server:
 
-1. Create the *Images* folder in the root folder of your project. In the newly created folder, place an image that you want to initially display.
+1. Create the *Images* folder in the root folder of your project. In the newly created folder, place an image you want to display initially.
 
 2. Add the [HTML \<img\> tag](https://www.w3schools.com/tags/tag_img.asp) to a page. Use the tag's **id** attribute to specify the tag identifier. Assign the path to the initially displayed image to the tag's **src** attribute. The **alt** attribute allows you to specify an alternate text for the image.
 
@@ -40,7 +40,7 @@ Follow the steps below to display an image on a web page once a user uploads the
         // Relative path: "Images\Picture2023-02-17 10-19-58.jpg"
         e.CallbackData = String.Format("Images\\Picture{0}.jpg", DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss"));
         
-        // Send a full path as the 'path' parameter to the 'SaveAs' method
+        // Pass a full path to the 'SaveAs' method as the 'path' parameter
         // Full path: "C:\WebSite\Images\Picture2023-02-17 10-19-58.jpg"
         string path = Page.MapPath("~/") + e.CallbackData;
         e.UploadedFile.SaveAs(path);

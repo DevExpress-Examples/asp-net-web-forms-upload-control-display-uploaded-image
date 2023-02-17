@@ -12,7 +12,7 @@ Partial Public Class _Default
         ' Relative path: "Images\Picture2023-02-17 10-19-58.jpg"
 		e.CallbackData = String.Format("Images\Picture{0}.jpg", DateTime.Now.ToString("yyyy-MM-dd hh-mm-ss"))
 		
-		' Send a full path as the 'path' parameter to the 'SaveAs' method
+		' Pass a full path to the 'SaveAs' method as the 'path' parameter
         ' Full path: "C:\WebSite\Images\Picture2023-02-17 10-19-58.jpg"
 		Dim path As String = Page.MapPath("~/") + e.CallbackData
 		e.UploadedFile.SaveAs(path)
