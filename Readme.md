@@ -47,7 +47,7 @@ Follow the steps below to display an image on a web page once a user uploads the
     }
     ```
 
-5. Handle the Upload Control's client-side [FileUploadComplete](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControl.FileUploadComplete?p=netframework) event. In the event handler, call the [getElementById](https://developer.mozilla.org/en-US/docs/web/api/document/getelementbyid) method to access the `<img>` tag by its identifier. The [callbackData](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControlFileUploadCompleteEventArgs.callbackData) event argument contains the path the server passed to the client. Assign this path to the **src** attribute of the image tag to display the uploaded image.
+5. Handle the Upload Control's client-side [FileUploadComplete](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControl.FileUploadComplete?p=netframework) event. In the event handler, call the [getElementById](https://developer.mozilla.org/en-US/docs/web/api/document/getelementbyid) method to access the `<img>` tag by its identifier. The [callbackData](https://docs.devexpress.com/AspNet/js-ASPxClientUploadControlFileUploadCompleteEventArgs.callbackData) event argument contains the path passed from the server. Assign this path to the **src** attribute of the image tag to display the uploaded image.
 
     ```js
     function OnFileUploadComplete(s, e) {
