@@ -29,7 +29,8 @@
 				</ValidationSettings>
 				<ClientSideEvents FileUploadComplete="OnFileUploadComplete" />
 			</dx:ASPxUploadControl>
-			<img src="Images/DefaultPicture.jpg" id="image" alt="Please load image" />
+			<br />
+            <img src="Images/DefaultImage.jpg" id="image" alt="Please load image" />
 		</div>
 	</form>
 </body>
