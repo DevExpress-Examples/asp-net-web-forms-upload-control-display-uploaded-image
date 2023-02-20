@@ -15,7 +15,7 @@ Follow the steps below to display an image on a web page once a user uploads the
 
 1. Create the *Images* folder in the root folder of your project. In the newly created folder, place an image you want to display initially.
 
-2. Add the [HTML \<img\> tag](https://www.w3schools.com/tags/tag_img.asp) to a page. Use the tag's **id** attribute to specify the tag identifier. Assign the path to the initially displayed image to the tag's **src** attribute. The **alt** attribute allows you to specify an alternate text for the image.
+2. Add the [HTML \<img\> tag](https://www.w3schools.com/tags/tag_img.asp) to a page. Use the tag's **id** attribute to specify the tag identifier. Assign the path that runs to the initially displayed image to the tag's **src** attribute. The **alt** attribute allows you to specify an alternate text for the image.
 
     ```aspx
     <img src="Images/DefaultImage.jpg" id="image" alt="Please load image" />
