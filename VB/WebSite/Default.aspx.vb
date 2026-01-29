@@ -14,7 +14,7 @@ Partial Public Class _Default
 
 		' Pass a full path to the 'SaveAs' method as the 'path' parameter
 		' Full path: "C:\WebSite\Images\Picture2023-02-17 10-19-58.jpg"
-		Dim path As String = Page.MapPath("~/") + e.CallbackData
+		Dim path As String = Page.MapPath("~/") & e.CallbackData
 		e.UploadedFile.SaveAs(path)
 	End Sub
 End Class
